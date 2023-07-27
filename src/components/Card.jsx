@@ -1,30 +1,37 @@
-export default function Card() {
+import nike from '../assets/nike.png'
+
+export default function Card({ title, data, Component, gap, totalPrice }) {
 	return (
-		<div>
-			<div className='bg-slate-300 rounded-[28px] p-2 flex justify-center items-center h-[20rem]'>
-				<img
-					src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/1315882/air-zoom-pegasus-36-mens-running-shoe-wide-D24Mcz-removebg-preview.png'
-					alt=''
-					className='origin-bottom -rotate-[24deg] translate-x-8 scale-105'
-					loading='lazy'
-				/>
-			</div>
-			<div className='mt-5 text-black'>
-				<h3 className='text-lg font-bold'>Nike Air Zoom Pegasus 36</h3>
-				<p className='mt-4 text-gray'>
-					The iconic Nike Air Zoom Pegasus 36 offers more cooling and
-					mesh that targets breathability across high-heat areas. A
-					slimmer heel collar and tongue reduce bulk, while exposed
-					cables give you a snug fit at higher speeds.
-				</p>
-				<div className='flex items-center justify-between mt-4 font-bold'>
-					<span className='text-md'>$108.97</span>
-					<button
-						type='button'
-						className='uppercase text-sm rounded-[28px] bg-yellow px-3 py-2'
-					>
-						Add to cart
-					</button>
+		<div className='w-1/6 h-[500px] font-rubik py-3 px-7 rounded-[28px] shadow-slate-300 shadow-md relative overflow-hidden bg-white'>
+			<div className='absolute rounded-[50%] h-56 w-56 bg-yellow -top-20 -left-32'></div>
+			<div className='relative z-10'>
+				<div className='pb-3'>
+					<img src={nike} alt='' className='w-10 mb-3' />
+					<div className='flex justify-between items-end'>
+						<h2 className='text-lg font-extrabold text-black'>
+							{title}
+						</h2>
+						{totalPrice && data && data.length !== 0 ? (
+							<p className='text-black text-lg font-extrabold'>
+								${totalPrice.toFixed(2)}
+							</p>
+						) : null}
+					</div>
+				</div>
+				<div
+					className={`h-[400px] overflow-y-scroll scroll-smooth disable-scrollbars flex flex-col ${
+						gap === 'big' ? 'gap-y-20' : 'gap-y-5'
+					}`}
+				>
+					{data && data.length !== 0 ? (
+						data.map((item) => {
+							return <Component product={item} key={item.id} />
+						})
+					) : (
+						<p className='text-center text-lg font-bold text-black'>
+							Your cart is empty
+						</p>
+					)}
 				</div>
 			</div>
 		</div>
