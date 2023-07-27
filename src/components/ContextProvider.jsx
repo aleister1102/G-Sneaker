@@ -25,7 +25,7 @@ export default function ContextProvider({ children }) {
 		setTotalPrice(newPrice)
 	}
 
-	console.log(cartItems)
+	// console.log(cartItems)
 
 	return (
 		<Context.Provider

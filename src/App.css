@@ -1,5 +1,6 @@
-.bug {
-	border: 1px solid red;
+.disable-scrollbars::-webkit-scrollbar {
+	background: transparent; /* Chrome/Safari/Webkit */
+	width: 0px;
 }
 
 .disable-scrollbars {

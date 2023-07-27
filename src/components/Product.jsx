@@ -43,7 +43,7 @@ export default function Product({ product }) {
 						className={`bg-yellow h-full ${
 							added
 								? 'rounded-[50%] w-10 p-3'
-								: 'uppercase text-sm rounded-[28px] px-3 py-2'
+								: 'rounded-[28px] px-3 py-2'
 						}`}
 						onClick={handleAddToCart}
 					>
@@ -55,7 +55,9 @@ export default function Product({ product }) {
 								className='w-full h-full object-contain'
 							/>
 						) : (
-							'Add to cart'
+							<p className='font-extrabold uppercase text-xs'>
+								Add to cart
+							</p>
 						)}
 					</button>
 				</div>

@@ -9,7 +9,7 @@ function App() {
 	const { products, cartItems, totalPrice } = useContext(Context)
 
 	return (
-		<div className='h-screen flex flex-wrap justify-center items-center gap-x-10 relative overflow-hidden'>
+		<div className='lg:h-screen py-6 flex flex-col lg:flex-row justify-center items-center gap-y-10 lg:gap-x-10 relative overflow-hidden'>
 			<div className='bg-yellow w-[400%] h-[100%] rounded-[80%] absolute top-[360px] -left-[280px]'></div>
 			<Card
 				title={'Our Products'}
