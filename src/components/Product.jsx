@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect, useTransition } from 'react'
 import { Context } from './ContextProvider'
 import check from '../assets/check.png'
 
@@ -10,9 +10,9 @@ export default function Product({ product }) {
 
 	function handleAddToCart() {
 		if (added) return
+		setAdded(true)
 		addToCart(id)
 		updateTotalPrice(totalPrice + price)
-		setAdded(true)
 	}
 
 	useEffect(() => {
@@ -37,13 +37,13 @@ export default function Product({ product }) {
 				<h3 className='text-lg font-bold'>{name}</h3>
 				<p className='mt-4 text-gray'>{description}</p>
 				<div className='flex items-center justify-between mt-4 font-bold h-10'>
-					<span className='text-md'>${price}</span>
+					<span className='text-md md:text-lg'>${price}</span>
 					<button
 						type='button'
 						className={`bg-yellow h-full ${
 							added
-								? 'rounded-[50%] w-10 p-3'
-								: 'rounded-[28px] px-3 py-2'
+								? 'rounded-[50%] p-3'
+								: 'rounded-[28px] px-3 py-2 hover:shadow-yellow hover:shadow-md transition duration-800'
 						}`}
 						onClick={handleAddToCart}
 					>

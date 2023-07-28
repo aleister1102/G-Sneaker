@@ -1,8 +1,8 @@
 import nike from '../assets/nike.png'
 
-export default function Card({ title, data, Component, gap, totalPrice }) {
+export default function List({ title, data, Component, gap, totalPrice }) {
 	return (
-		<div className='w-5/6 lg:w-1/6 h-[500px] font-rubik pt-3 px-7 rounded-[28px] shadow-slate-300 shadow-md relative overflow-hidden bg-white'>
+		<div className='w-5/6 md:w-2/5 lg:w-[30%] xl:w-1/6 h-[500px] font-rubik pt-3 px-7 rounded-[28px] shadow-slate-300 shadow-md relative overflow-hidden bg-white'>
 			<div className='absolute rounded-[50%] h-56 w-56 bg-yellow -top-20 -left-32'></div>
 			<div className='relative z-10'>
 				<div className='pb-3'>
@@ -11,9 +11,9 @@ export default function Card({ title, data, Component, gap, totalPrice }) {
 						<h2 className='text-lg font-extrabold text-black'>
 							{title}
 						</h2>
-						{totalPrice && data && data.length !== 0 ? (
+						{totalPrice !== undefined ? (
 							<p className='text-black text-lg font-extrabold'>
-								${totalPrice.toFixed(2)}
+								${totalPrice.toFixed(2).replace('-', '')}
 							</p>
 						) : null}
 					</div>
@@ -28,8 +28,8 @@ export default function Card({ title, data, Component, gap, totalPrice }) {
 							return <Component product={item} key={item.id} />
 						})
 					) : (
-						<p className='text-center text-lg font-bold text-black'>
-							Your cart is empty
+						<p className='text-lg text-black'>
+							Your cart is empty.
 						</p>
 					)}
 				</div>

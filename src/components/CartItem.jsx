@@ -8,7 +8,7 @@ function Button({ image, handler, customClassnames }) {
 	return (
 		<button
 			className={
-				'w-6 h-6 lg:w-7 lg:h-7 rounded-[50%] inline-flex justify-center items-center ' +
+				'w-6 h-6 md:w-6 md:h-6 lg:w-6 lg:h-6 rounded-[50%] inline-flex justify-center items-center ' +
 				customClassnames
 			}
 			onClick={handler}
@@ -22,6 +22,7 @@ export default function CartItem({ product }) {
 	const { id, image, name, price, color } = product
 	const { totalPrice, removeFromCart, updateTotalPrice } = useContext(Context)
 	const [quantity, setQuantity] = useState(1)
+	const [removed, setRemoved] = useState(false)
 
 	function handleIncrease() {
 		updateTotalPrice(totalPrice + price)
@@ -35,28 +36,37 @@ export default function CartItem({ product }) {
 	}
 
 	function handleRemove() {
-		removeFromCart(id)
-		updateTotalPrice(totalPrice - quantity * price)
+		setRemoved(true)
+		setTimeout(() => {
+			removeFromCart(id)
+			updateTotalPrice(totalPrice - quantity * price)
+		}, 800)
 	}
 
 	return (
-		<div className='flex justify-between'>
-			<div className='w-28 h-28 lg:w-24 lg:h-24 flex items-center justify-center relative'>
+		<div className={`flex justify-between ${removed && 'animate-shrink'}`}>
+			<div
+				className={`w-28 h-28 md:w-24 md:h-24 lg:w-24 lg:h-24 flex items-center justify-center relative animate-grow`}
+			>
 				<div
 					style={{ backgroundColor: color }}
-					className='w-20 h-20 lg:w-16 lg:h-16 rounded-[50%] absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-[36%]'
+					className='w-20 h-20 rounded-[50%] absolute left-0'
 				></div>
 				<img
 					src={image}
 					alt='a shoe'
 					loading='lazy'
-					className='absolute z-10 -rotate-[24deg] -top-3 -left-4 w-full h-full object-contain'
+					className='absolute z-10 -rotate-[24deg] object-contain h-[125%] w-[125%] lg:-top-5 lg:-left-2 lg:scale-100 -top-6 -left-4 scale-[85%]'
 				/>
 			</div>
 			<div className='flex flex-col pt-4 flex-1'>
-				<h3 className='text-sm lg:text-xs font-bold'>{name}</h3>
-				<p className='text-lg lg:text-sm font-bold my-2'>${price}</p>
-				<div className='flex justify-between'>
+				<h3 className='text-sm md:text-xs lg:text-xs font-bold animate-[slide-from-right_3s_linear]'>
+					{name}
+				</h3>
+				<p className='text-lg md:text-sm lg:text-sm font-bold my-2 animate-[slide-from-right_3.1s_linear]'>
+					${price}
+				</p>
+				<div className='flex justify-between animate-[slide-from-right_3.2s_linear]'>
 					<div>
 						<Button
 							image={
@@ -69,7 +79,7 @@ export default function CartItem({ product }) {
 							handler={handleDecrease}
 							customClassnames={'bg-light-gray '}
 						/>
-						<span className='mx-3 lg:text-base text-sm'>
+						<span className='mx-3 md:text-sm lg:text-md text-sm'>
 							{quantity}
 						</span>
 						<Button
