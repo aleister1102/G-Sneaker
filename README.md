@@ -5,6 +5,8 @@
 
 ## Installation
 
+### Front-end
+
 ```bash
 yarn create vite . --template react
 ```
@@ -14,6 +16,8 @@ yarn add -D tailwindcss postcss autoprefixer
 yarn tailwindcss init -p
 ```
 
-```bash
-```
+### Back-end
 
+```bash
+yarn add express zod mongoose pino pino-pretty nodemon axios dayjs dotenv
+```
