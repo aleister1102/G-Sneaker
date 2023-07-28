@@ -1,6 +1,13 @@
 import nike from '../assets/nike.png'
 
-export default function List({ title, data, Component, gap, totalPrice }) {
+export default function List({
+	title,
+	data,
+	Component,
+	gap,
+	emptyMessage,
+	totalPrice,
+}) {
 	return (
 		<div className='w-5/6 md:w-2/5 lg:w-[30%] xl:w-1/4 2xl:w-1/6 h-[500px] font-rubik pt-3 px-7 rounded-[28px] shadow-slate-300 shadow-md relative overflow-hidden bg-white'>
 			<div className='absolute rounded-[50%] h-56 w-56 bg-yellow -top-20 -left-32'></div>
@@ -33,9 +40,7 @@ export default function List({ title, data, Component, gap, totalPrice }) {
 							)
 						})
 					) : (
-						<p className='text-lg text-black'>
-							Your cart is empty.
-						</p>
+						<p className='text-lg text-black'>{emptyMessage}</p>
 					)}
 				</div>
 			</div>

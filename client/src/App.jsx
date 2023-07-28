@@ -16,6 +16,7 @@ function App() {
 				data={products}
 				Component={Product}
 				gap={'big'}
+				emptyMessage={'No products found.'}
 			/>
 			<List
 				title={'Your Cart'}
@@ -23,6 +24,7 @@ function App() {
 				Component={CartItem}
 				gap={'small'}
 				totalPrice={totalPrice}
+				emptyMessage={'Your cart is empty.'}
 			/>
 		</div>
 	)
