@@ -19,7 +19,7 @@ function Button({ image, handler, customClassnames }) {
 }
 
 export default function CartItem({ product }) {
-	const { id, image, name, price, color } = product
+	const { productId, image, name, price, color } = product
 	const { totalPrice, removeFromCart, updateTotalPrice } = useContext(Context)
 	const [quantity, setQuantity] = useState(1)
 	const [removed, setRemoved] = useState(false)
@@ -30,7 +30,7 @@ export default function CartItem({ product }) {
 	}
 
 	function handleDecrease() {
-		if (quantity - 1 === 0) removeFromCart(id)
+		if (quantity - 1 === 0) removeFromCart(productId)
 		updateTotalPrice(totalPrice - price)
 		setQuantity((quantity) => quantity - 1)
 	}
@@ -38,7 +38,7 @@ export default function CartItem({ product }) {
 	function handleRemove() {
 		setRemoved(true)
 		setTimeout(() => {
-			removeFromCart(id)
+			removeFromCart(productId)
 			updateTotalPrice(totalPrice - quantity * price)
 		}, 800)
 	}

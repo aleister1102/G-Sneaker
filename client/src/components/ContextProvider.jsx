@@ -1,9 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import useFetch from '../hooks/useFetch'
+import axios from 'axios'
 
 const API = import.meta.env.VITE_API
 
 export const Context = React.createContext({})
+
+function updateProduct(product) {
+	try {
+		const updatedProduct = axios.put(
+			`${API}/products/${product.productId}`,
+			product,
+		)
+	} catch (e) {
+		console.log(e.message)
+	}
+}
 
 export default function ContextProvider({ children }) {
 	const [products, setProducts] = useState([])
@@ -20,17 +32,29 @@ export default function ContextProvider({ children }) {
 		setCartItems(products.filter((product) => product.isInCart))
 	}, [products])
 
+	useEffect(() => {
+		setTotalPrice(
+			cartItems.reduce((total, product) => total + product.price, 0),
+		)
+	}, [cartItems])
+
 	function addToCart(productId) {
-		setCartItems((cartItems) => [
-			...cartItems,
-			products.find((product) => product.productId === productId),
-		])
+		const product = products.find(
+			(product) => product.productId === productId,
+		)
+		setCartItems((cartItems) => [...cartItems, product])
+		updateProduct({ ...product, isInCart: true })
 	}
 
 	function removeFromCart(productId) {
-		setCartItems((cartItems) =>
-			cartItems.filter((cartItem) => cartItem.productId !== productId),
+		const product = products.find(
+			(product) => product.productId === productId,
 		)
+		const inCartProducts = cartItems.filter(
+			(cartItem) => cartItem.productId !== product.productId,
+		)
+		setCartItems(inCartProducts)
+		updateProduct({ ...product, isInCart: false })
 	}
 
 	function updateTotalPrice(newPrice) {
