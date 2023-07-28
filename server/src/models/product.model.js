@@ -5,10 +5,11 @@ const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz1234567890", 10);
 
 const productSchema = new mongoose.Schema({
   productId: { type: String, required: true, unique: true, default: () => `product_${nanoid()}` },
-  name: { type: String, required: true },
+  name: { type: String, required: true, unique: true },
   description: { type: String, required: true },
   price: { type: Number, required: true },
   image: { type: String, required: true },
+  color: { type: String, required: true },
   isInCart: { type: Boolean, required: true, default: false },
 }, {
   timestamps: true,

@@ -25,7 +25,12 @@ export default function List({ title, data, Component, gap, totalPrice }) {
 				>
 					{data && data.length !== 0 ? (
 						data.map((item) => {
-							return <Component product={item} key={item.id} />
+							return (
+								<Component
+									product={item}
+									key={item.productId}
+								/>
+							)
 						})
 					) : (
 						<p className='text-lg text-black'>

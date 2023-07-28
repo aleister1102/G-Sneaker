@@ -1,31 +1,41 @@
-import React, { useState } from 'react'
-import data from '../data/shoes.json'
+import React, { useEffect, useState } from 'react'
+import useFetch from '../hooks/useFetch'
+
+const API = import.meta.env.VITE_API
 
 export const Context = React.createContext({})
 
 export default function ContextProvider({ children }) {
-	const [products, setProducts] = useState(data.shoes)
+	const [products, setProducts] = useState([])
 	const [cartItems, setCartItems] = useState([])
 	const [totalPrice, setTotalPrice] = useState(0)
 
-	function addToCart(id) {
+	const data = useFetch(`${API}/products`)
+
+	useEffect(() => {
+		setProducts(data)
+	}, [data])
+
+	useEffect(() => {
+		setCartItems(products.filter((product) => product.isInCart))
+	}, [products])
+
+	function addToCart(productId) {
 		setCartItems((cartItems) => [
 			...cartItems,
-			products.find((product) => product.id === id),
+			products.find((product) => product.productId === productId),
 		])
 	}
 
-	function removeFromCart(id) {
+	function removeFromCart(productId) {
 		setCartItems((cartItems) =>
-			cartItems.filter((cartItem) => cartItem.id !== id),
+			cartItems.filter((cartItem) => cartItem.productId !== productId),
 		)
 	}
 
 	function updateTotalPrice(newPrice) {
 		setTotalPrice(newPrice)
 	}
-
-	// console.log(cartItems)
 
 	return (
 		<Context.Provider

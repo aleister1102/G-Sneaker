@@ -16,8 +16,12 @@ yarn add -D tailwindcss postcss autoprefixer
 yarn tailwindcss init -p
 ```
 
+```bash
+yarn add axios
+```
+
 ### Back-end
 
 ```bash
-yarn add express zod mongoose pino pino-pretty nodemon axios dayjs dotenv nanoid@3
+yarn add express zod mongoose pino pino-pretty nodemon dayjs dotenv nanoid@3
 ```

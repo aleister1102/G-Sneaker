@@ -3,7 +3,7 @@ import { Context } from './ContextProvider'
 import check from '../assets/check.png'
 
 export default function Product({ product }) {
-	const { id, image, name, description, price, color } = product
+	const { productId, image, name, description, price, color } = product
 	const { cartItems, totalPrice, addToCart, updateTotalPrice } =
 		useContext(Context)
 	const [added, setAdded] = useState(false)
@@ -11,12 +11,14 @@ export default function Product({ product }) {
 	function handleAddToCart() {
 		if (added) return
 		setAdded(true)
-		addToCart(id)
+		addToCart(productId)
 		updateTotalPrice(totalPrice + price)
 	}
 
 	useEffect(() => {
-		const isInCart = cartItems.find((cartItem) => cartItem.id === id)
+		const isInCart = cartItems.find(
+			(cartItem) => cartItem.productId === productId,
+		)
 		if (!isInCart) setAdded(false)
 	}, [cartItems])
 

@@ -13,7 +13,10 @@ const payload = {
     }),
     image: zod.string({
       required_error: "Image is required"
-    })
+    }),
+    color: zod.string({
+      required_error: "Color is required"
+    }),
   })
 }
 
