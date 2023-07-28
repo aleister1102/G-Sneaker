@@ -44,7 +44,7 @@ export default function Product({ product }) {
 						type='button'
 						className={`bg-yellow h-full ${
 							added
-								? 'rounded-[50%] p-3'
+								? 'rounded-[50%] w-10 p-3'
 								: 'rounded-[28px] px-3 py-2 hover:shadow-yellow hover:shadow-md transition duration-800'
 						}`}
 						onClick={handleAddToCart}
