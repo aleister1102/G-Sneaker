@@ -19,5 +19,5 @@ yarn tailwindcss init -p
 ### Back-end
 
 ```bash
-yarn add express zod mongoose pino pino-pretty nodemon axios dayjs dotenv
+yarn add express zod mongoose pino pino-pretty nodemon axios dayjs dotenv nanoid@3
 ```
