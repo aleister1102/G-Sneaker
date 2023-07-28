@@ -6,12 +6,13 @@ const API = import.meta.env.VITE_API
 
 export const Context = React.createContext({})
 
-function updateProduct(product) {
+async function updateProduct(product) {
 	try {
 		const updatedProduct = axios.put(
 			`${API}/products/${product.productId}`,
 			product,
 		)
+		return updatedProduct
 	} catch (e) {
 		console.log(e.message)
 	}

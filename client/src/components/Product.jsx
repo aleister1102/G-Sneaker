@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, useTransition } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { Context } from './ContextProvider'
 import check from '../assets/check.png'
 
@@ -19,7 +19,7 @@ export default function Product({ product }) {
 		const isInCart = cartItems.find(
 			(cartItem) => cartItem.productId === productId,
 		)
-		if (!isInCart) setAdded(false)
+		setAdded(isInCart)
 	}, [cartItems])
 
 	return (
