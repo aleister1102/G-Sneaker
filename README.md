@@ -1,3 +1,5 @@
+# G-Sneaker
+
 ## Technologies
 
 -   Front-end: ReactJS, TailwindCSS
@@ -25,3 +27,7 @@ yarn add axios
 ```bash
 yarn add express zod mongoose pino pino-pretty nodemon dayjs dotenv nanoid@3
 ```
+
+Setup environment variables in `.env`:
+- `PORT`: port number
+- `MONGO_URI`: MongoDB URI
