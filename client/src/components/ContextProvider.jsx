@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import useFetch from '../hooks/useFetch'
 import axios from 'axios'
 
-const API = import.meta.env.VITE_API
+const API = 'https://g-sneaker-ro3h.onrender.com/api/v1'
 
 export const Context = React.createContext({})
 
